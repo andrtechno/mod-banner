@@ -27,14 +27,14 @@ class m180917_196318_banner extends Migration
             'switch' => $this->boolean()->defaultValue(1),
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null(),
-        ], $this->tableOptions);
+        ]);
 
         $this->createTable(BannerTranslate::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'object_id' => $this->integer()->unsigned(),
             'language_id' => $this->tinyInteger()->unsigned(),
             'content' => $this->text()
-        ], $this->tableOptions);
+        ]);
 
         $this->createIndex('switch', Banner::tableName(), 'switch');
         $this->createIndex('ordern', Banner::tableName(), 'ordern');
