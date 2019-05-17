@@ -1,12 +1,7 @@
 <?php
 
-/**
- * Контроллер админ-панели banner
- * 
- * @author Semenov Andrew <andrew.panix@gmail.com>
- * @package modules.banner.controllers.admin
- * @uses AdminController
- */
+namespace panix\mod\banner\controllers\admin;
+
 class DefaultController extends AdminController {
 
     public function actions() {
@@ -40,7 +35,7 @@ class DefaultController extends AdminController {
         if (!empty($_GET['Banner']))
             $model->attributes = $_GET['Banner'];
 
-        $this->render('index', array(
+        return $this->render('index', array(
             'model' => $model,
         ));
     }

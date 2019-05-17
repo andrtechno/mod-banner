@@ -1,16 +1,10 @@
 <?php
 
-/**
- * Модуль управление баннером
- *
- * @author PIXELION CMS development team <info@pixelion.com.ua>
- * @link http://pixelion.com.ua PIXELION CMS
- * @package module
- * @subpackage banner
- * @uses WebModule
- * @version 1.0
- */
-class BannerModule extends WebModule {
+namespace panix\mod\banner;
+
+use panix\engine\WebModule;
+
+class Module extends WebModule {
 
     public $icon = 'icon-images';
 

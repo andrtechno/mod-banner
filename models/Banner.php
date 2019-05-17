@@ -1,5 +1,8 @@
 <?php
-Yii::import('mod.banner.models.BannerTranslate');
+namespace panix\mod\banner\models;
+
+use panix\engine\db\ActiveRecord;
+
 class Banner extends ActiveRecord {
 
     const MODULE_ID = 'banner';
@@ -106,7 +109,7 @@ class Banner extends ActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return '{{banner}}';
+        return '{{%banner}}';
     }
 
     public function defaultScope() {
