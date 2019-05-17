@@ -1,0 +1,22 @@
+{
+    "name": "panix/mod-banner",
+    "description": "Banner",
+    "homepage": "https://github.com/andrtechno/mod-banner",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PIXELION CMS",
+            "email": "dev@pixelion.com.ua",
+            "homepage": "https://pixelion.com.ua"
+        }
+    ],
+    "require": {
+        "panix/engine": "*",
+    },
+    "autoload": {
+        "psr-4": {
+            "panix\\mod\\banner\\": ""
+        }
+    }
+}
