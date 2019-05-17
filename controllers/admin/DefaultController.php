@@ -2,9 +2,14 @@
 
 namespace panix\mod\banner\controllers\admin;
 
+use panix\mod\banner\models\BannerSearch;
+use Yii;
+use panix\mod\banner\models\Banner;
+use panix\engine\controllers\AdminController;
+
 class DefaultController extends AdminController {
 
-    public function actions() {
+    public function actions2() {
         return array(
             'switch' => array(
                 'class' => 'ext.adminList.actions.SwitchAction',
@@ -14,11 +19,11 @@ class DefaultController extends AdminController {
             ),
             'sortable' => array(
                 'class' => 'ext.sortable.SortableAction',
-                'model' => Banner::model(),
+                'model' => Banner::find(),
             ),
             'removefile' => array(
                 'class' => 'ext.bootstrap.fileinput.actions.RemoveFileAction',
-                'model' => Banner::model(),
+                'model' => Banner::find(),
                 'dir' => 'banner',
                 'attribute' => 'image'
             ),
@@ -26,45 +31,38 @@ class DefaultController extends AdminController {
     }
 
     /**
-     * Display pages list.
+     * Display banner list.
      */
     public function actionIndex() {
-        $this->pageName = Yii::t('BannerModule.default', 'MODULE_NAME');
-        $this->breadcrumbs = array($this->pageName);
-        $model = new Banner('search');
-        if (!empty($_GET['Banner']))
-            $model->attributes = $_GET['Banner'];
+        $this->pageName = Yii::t('banner/default', 'MODULE_NAME');
+        $this->breadcrumbs = [$this->pageName];
 
-        return $this->render('index', array(
-            'model' => $model,
-        ));
+        $searchModel = new BannerSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+
     }
 
     /**
      * Create or update new page
      * @param boolean $new
-     * @throws CHttpException
      */
     public function actionUpdate($new = false) {
-        if ($new === true) {
-            $model = new Banner;
-        } else {
-            $model = Banner::model()
-                    ->findByPk($_GET['id']);
-        }
-
-        if (!$model)
-            throw new CHttpException(404);
+        $model = Banner::findModel($new);
 
         $this->pageName = ($model->isNewRecord) ? $model::t('PAGE_TITLE', 0) : $model::t('PAGE_TITLE', 1);
 
         $this->breadcrumbs = array(
-            Yii::t('BannerModule.default', 'MODULE_NAME') => $this->createUrl('index'),
+            Yii::t('banner/default', 'MODULE_NAME') => $this->createUrl('index'),
             $this->pageName
         );
 
         // $oldImage = $model->image;
-        if (Yii::app()->request->isPostRequest) {
+        if (Yii::$app->request->isPost) {
             $model->attributes = $_POST['Banner'];
             if ($model->validate()) {
                 $model->save();
@@ -73,7 +71,7 @@ class DefaultController extends AdminController {
                 $this->refresh();
             }
         }
-        $this->render('update', array('model' => $model));
+        return $this->render('update', ['model' => $model]);
     }
 
 

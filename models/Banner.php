@@ -1,6 +1,7 @@
 <?php
 namespace panix\mod\banner\models;
 
+use panix\engine\behaviors\TranslateBehavior;
 use panix\engine\db\ActiveRecord;
 
 class Banner extends ActiveRecord {
@@ -9,7 +10,7 @@ class Banner extends ActiveRecord {
 
     public $content;
     public $image;
-    public $translateModelName = 'BannerTranslate';
+    public $translationClass = BannerTranslate::class;
 
     public function getForm() {
         Yii::app()->controller->widget('ext.tinymce.TinymceWidget');
@@ -104,67 +105,46 @@ class Banner extends ActiveRecord {
         return '{{%banner}}';
     }
 
-    public function defaultScope() {
-        return array(
-            'order' => 'ordern DESC',
-        );
-    }
 
     /**
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        return array(
+        return [
             array('image, content', 'type', 'type' => 'string'),
             array('image', 'FileValidator', 'types' => 'jpg, gif, png', 'allowEmpty' => true),
             //array('image', 'required', 'on'=>'insert'),
             array('date_create, date_update', 'date', 'format' => 'yyyy-MM-dd HH:mm:ss'),
-            array('id, image, content, date_update, date_create, ordern', 'safe', 'on' => 'search'),
-        );
+        ];
     }
+
 
     public function behaviors() {
-        $a = array();
-        $a['timezone'] = array(
-            'class' => 'app.behaviors.TimezoneBehavior',
-            'attributes' => array('date_create', 'date_update'),
-        );
-        $a['upload'] = array(
-            'class' => 'app.behaviors.UploadfileBehavior',
-            'attributes'=>array('image'),
-            'dir'=>'banner'
-        );
-        $a['TranslateBehavior'] = array(
-            'class' => 'app.behaviors.TranslateBehavior',
-            'translateAttributes' => array(
-                'content',
-            ),
-        );
-        return CMap::mergeArray($a, parent::behaviors());
+        return \yii\helpers\ArrayHelper::merge([
+            'translate' => [
+                'class' => TranslateBehavior::class,
+                'translationAttributes' => [
+                    'content',
+                ]
+            ],
+            'upload' => [
+                'class' => 'panix\engine\behaviors\UploadFileBehavior',
+                'files' => [
+                    'image' => '@uploads/banner',
+                ],
+                'options' => [
+                    'watermark' => false
+                ]
+            ]
+        ], parent::behaviors());
     }
 
-    public function relations() {
-        return array(
-            'translate' => array(self::HAS_ONE, $this->translateModelName, 'object_id'),
-        );
+    public function getTranslations() {
+        return $this->hasMany($this->translationClass, ['object_id' => 'id']);
     }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions. Used in admin search.
-     * @return ActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-     */
-    public function search() {
-        $criteria = new CDbCriteria;
-        $criteria->with = array('translate');
-        $criteria->compare('t.id', $this->id);
-        $criteria->compare('t.image', $this->image, true);
-        $criteria->compare('t.date_create', $this->date_create, true);
-        $criteria->compare('t.date_update', $this->date_update, true);
-        $criteria->compare('translate.content', $this->content, true);
-        return new ActiveDataProvider($this, array(
-            'criteria' => $criteria,
-                // 'sort' => $sort,
-        ));
+    public function getTranslation()
+    {
+        return $this->hasOne($this->translationClass, ['object_id' => 'id']);
     }
 
 }
