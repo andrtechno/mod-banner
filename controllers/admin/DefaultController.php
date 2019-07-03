@@ -9,27 +9,6 @@ use panix\engine\controllers\AdminController;
 
 class DefaultController extends AdminController {
 
-    public function actions2() {
-        return array(
-            'switch' => array(
-                'class' => 'ext.adminList.actions.SwitchAction',
-            ),
-            'delete' => array(
-                'class' => 'ext.adminList.actions.DeleteAction',
-            ),
-            'sortable' => array(
-                'class' => 'ext.sortable.SortableAction',
-                'model' => Banner::find(),
-            ),
-            'removefile' => array(
-                'class' => 'ext.bootstrap.fileinput.actions.RemoveFileAction',
-                'model' => Banner::find(),
-                'dir' => 'banner',
-                'attribute' => 'image'
-            ),
-        );
-    }
-
     /**
      * Display banner list.
      */
@@ -49,7 +28,8 @@ class DefaultController extends AdminController {
 
     /**
      * Create or update new page
-     * @param boolean $new
+     * @param bool $new
+     * @return string
      */
     public function actionUpdate($new = false) {
         $model = Banner::findModel($new);
