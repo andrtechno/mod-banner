@@ -22,11 +22,11 @@ class m180917_196318_banner extends Migration
     {
         $this->createTable(Banner::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
-            'image' => $this->string(100),
-            'ordern' => $this->integer()->unsigned(),
-            'switch' => $this->boolean()->defaultValue(1),
+            'image' => $this->string(255),
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null(),
+            'ordern' => $this->integer()->unsigned(),
+            'switch' => $this->boolean()->defaultValue(1),
         ]);
 
         $this->createTable(BannerTranslate::tableName(), [

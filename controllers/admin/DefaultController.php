@@ -9,6 +9,27 @@ use panix\engine\controllers\AdminController;
 
 class DefaultController extends AdminController {
 
+    public function actions()
+    {
+        return [
+            'sortable' => [
+                'class' => \panix\engine\grid\sortable\Action::class,
+                'modelClass' => Banner::class,
+            ],
+            'switch' => [
+                'class' => \panix\engine\actions\SwitchAction::class,
+                'modelClass' => Banner::class,
+            ],
+            'delete' => [
+                'class' => \panix\engine\actions\DeleteAction::class,
+                'modelClass' => Banner::class,
+            ],
+            'deleteFile' => [
+                'class' => \panix\engine\actions\DeleteFileAction::class,
+                'modelClass' => Banner::class,
+            ],
+        ];
+    }
     /**
      * Display banner list.
      */
@@ -20,7 +41,7 @@ class DefaultController extends AdminController {
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
         $this->buttons = [
             [
-                'label' => Yii::t('banner/admin', 'CREATE_BANNER'),
+                'label' => Yii::t('banner/Banner', 'CREATE_BANNER'),
                 'url' => ['create'],
                 'icon' => 'add',
                 'options' => ['class' => 'btn btn-success']
