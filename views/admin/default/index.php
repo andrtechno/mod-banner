@@ -1,7 +1,7 @@
 <?php
 use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
-
+echo \panix\ext\fancybox\Fancybox::widget(['target' => '.image a']);
 Pjax::begin([
     'id'=>  'pjax-'.strtolower(basename($dataProvider->query->modelClass)),
 ]);
@@ -13,7 +13,8 @@ echo GridView::widget([
     'layoutOptions' => ['title' => $this->context->pageName],
     'showFooter' => true,
     //   'footerRowOptions' => ['class' => 'text-center'],
-    'rowOptions' => ['class' => 'sortable-column']
+    'rowOptions' => ['class' => 'sortable-column'],
+
 ]);
 
 Pjax::end();

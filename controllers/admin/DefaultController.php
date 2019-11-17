@@ -18,7 +18,14 @@ class DefaultController extends AdminController {
 
         $searchModel = new BannerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-
+        $this->buttons = [
+            [
+                'label' => Yii::t('banner/admin', 'CREATE_BANNER'),
+                'url' => ['create'],
+                'icon' => 'add',
+                'options' => ['class' => 'btn btn-success']
+            ]
+        ];
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
@@ -26,31 +33,27 @@ class DefaultController extends AdminController {
 
     }
 
-    /**
-     * Create or update new page
-     * @param bool $new
-     * @return string
-     */
-    public function actionUpdate($new = false) {
-        $model = Banner::findModel($new);
+    public function actionUpdate($id = false) {
+        $model = Banner::findModel($id);
+        $isNew = $model->isNewRecord;
+        $this->pageName = ($isNew) ? $model::t('CREATE_BANNER') : $model::t('UPDATE_BANNER');
 
-        $this->pageName = ($model->isNewRecord) ? $model::t('PAGE_TITLE', 0) : $model::t('PAGE_TITLE', 1);
-
-        $this->breadcrumbs = array(
-            Yii::t('banner/default', 'MODULE_NAME') => $this->createUrl('index'),
+        $this->breadcrumbs = [
+            [
+                'label'=>Yii::t('banner/default', 'MODULE_NAME'),
+                'url'=>['index']
+            ],
             $this->pageName
-        );
+        ];
 
-        // $oldImage = $model->image;
-        if (Yii::$app->request->isPost) {
-            $model->attributes = $_POST['Banner'];
-            if ($model->validate()) {
-                $model->save();
 
-              //  $this->redirect(array('index'));
-                $this->refresh();
-            }
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->validate()) {
+            $model->save();
+            $this->redirectPage($isNew, $post);
+
         }
+
         return $this->render('update', ['model' => $model]);
     }
 
