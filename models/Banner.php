@@ -5,6 +5,19 @@ namespace panix\mod\banner\models;
 use panix\engine\db\ActiveRecord;
 use panix\engine\Html;
 
+/**
+ * Class Banner
+ * @property integer $id
+ * @property string $url_name
+ * @property string $url
+ * @property string $image
+ * @property integer $ordern
+ * @property string $content
+ * @property integer $created_at
+ * @property integer $updated_at
+ *
+ * @package panix\mod\banner\models
+ */
 class Banner extends ActiveRecord
 {
 
@@ -53,8 +66,8 @@ class Banner extends ActiveRecord
     {
         return [
             [['content'], 'required'],
-            [['content'], 'string'],
-            [['image'], 'string', 'max' => 255],
+            [['content', 'url', 'url_name'], 'string'],
+            [['image', 'url', 'url_name'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'safe'],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
