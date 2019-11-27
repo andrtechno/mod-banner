@@ -46,7 +46,7 @@ class Banner extends ActiveRecord
                 'class' => 'panix\engine\grid\columns\ImageColumn',
                 'attribute' => 'image',
                 'value' => function ($model) {
-                    return Html::a(Html::img($model->getImageUrl('image', '50x50'), ['class' => 'img-thumbnail_']), $model->getImageUrl('image'), ['data-fancybox' => 'gallery', 'pjax' => 0]);
+                    return Html::a(Html::img($model->getImageUrl('image', '800x250'), ['class' => 'img-thumbnail_']), $model->getImageUrl('image'), ['data-fancybox' => 'gallery', 'pjax' => 0]);
                 }
             ],
             'DEFAULT_CONTROL' => [
