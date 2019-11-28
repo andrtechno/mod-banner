@@ -42,7 +42,7 @@ class BannerSearch extends Banner
     public function search($params)
     {
         $query = Banner::find();
-        $query->joinWith('translations translations');
+        //$query->joinWith('translations translations');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
