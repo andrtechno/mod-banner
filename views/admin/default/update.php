@@ -9,6 +9,8 @@ use panix\engine\bootstrap\ActiveForm;
  * @var \panix\mod\banner\models\Banner|\panix\engine\behaviors\UploadFileBehavior $model
  */
 $form = ActiveForm::begin();
+
+
 ?>
 <div class="card">
     <div class="card-header">
