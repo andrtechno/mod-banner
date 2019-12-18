@@ -1,11 +1,12 @@
 <?php
 use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
+
 echo \panix\ext\fancybox\Fancybox::widget(['target' => '.image a']);
 Pjax::begin([
-    'id'=>  'pjax-grid-'.mb_strtolower((new \ReflectionClass($dataProvider->query->modelClass))->getShortName()),
+    'dataProvider' => $dataProvider
 ]);
-//echo Html::beginForm(['/admin/pages/default/test'],'post',['id'=>'test','name'=>'test']);
+
 echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
