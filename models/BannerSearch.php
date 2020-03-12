@@ -41,9 +41,8 @@ class BannerSearch extends Banner
      */
     public function search($params)
     {
-        $query = Banner::find();
-        //$query->joinWith('translations translations');
-
+        $query = Banner::find()->translate();
+		$query->sort();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => self::getSort(),
@@ -61,7 +60,7 @@ class BannerSearch extends Banner
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'translations.content', $this->content]);
+        $query->andFilterWhere(['like', 'translate.content', $this->content]);
         //$query->andFilterWhere(['like', 'DATE(date_create)', $this->date_create]);
         //$query->andFilterWhere(['like', 'DATE(date_update)', $this->date_update]);
         // $query->andFilterWhere(['like', 'views', $this->views]);
