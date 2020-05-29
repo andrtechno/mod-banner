@@ -39,6 +39,7 @@ class Module extends WebModule
                         'label' => $this->name,
                         'url' => ['/admin/banner'],
                         'icon' => $this->icon,
+                        'visible' => Yii::$app->user->can('/banner/admin/default/index') || Yii::$app->user->can('/banner/admin/default/*')
                     ],
                 ],
             ],
