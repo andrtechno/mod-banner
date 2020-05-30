@@ -7,7 +7,8 @@ use Yii;
 use panix\mod\banner\models\Banner;
 use panix\engine\controllers\AdminController;
 
-class DefaultController extends AdminController {
+class DefaultController extends AdminController
+{
 
     public function actions()
     {
@@ -30,10 +31,12 @@ class DefaultController extends AdminController {
             ],
         ];
     }
+
     /**
      * Display banner list.
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $this->pageName = Yii::t('banner/default', 'MODULE_NAME');
         $this->breadcrumbs = [$this->pageName];
 
@@ -56,15 +59,16 @@ class DefaultController extends AdminController {
 
     }
 
-    public function actionUpdate($id = false) {
+    public function actionUpdate($id = false)
+    {
         $model = Banner::findModel($id);
         $isNew = $model->isNewRecord;
         $this->pageName = ($isNew) ? $model::t('CREATE_BANNER') : $model::t('UPDATE_BANNER');
 
         $this->breadcrumbs = [
             [
-                'label'=>Yii::t('banner/default', 'MODULE_NAME'),
-                'url'=>['index']
+                'label' => Yii::t('banner/default', 'MODULE_NAME'),
+                'url' => ['index']
             ],
             $this->pageName
         ];
@@ -78,5 +82,8 @@ class DefaultController extends AdminController {
         return $this->render('update', ['model' => $model]);
     }
 
-
+    public function actionCreate()
+    {
+        return $this->actionUpdate(false);
+    }
 }
