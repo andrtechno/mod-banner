@@ -39,14 +39,16 @@ class DefaultController extends AdminController {
 
         $searchModel = new BannerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-        $this->buttons = [
-            [
-                'label' => Yii::t('banner/Banner', 'CREATE_BANNER'),
-                'url' => ['create'],
-                'icon' => 'add',
-                'options' => ['class' => 'btn btn-success']
-            ]
-        ];
+        if (Yii::$app->user->can("/{$this->module->id}/{$this->id}/*") || Yii::$app->user->can("/{$this->module->id}/{$this->id}/create")) {
+            $this->buttons = [
+                [
+                    'label' => Yii::t('banner/Banner', 'CREATE_BANNER'),
+                    'url' => ['create'],
+                    'icon' => 'add',
+                    'options' => ['class' => 'btn btn-success']
+                ]
+            ];
+        }
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
