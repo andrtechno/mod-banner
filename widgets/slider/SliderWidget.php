@@ -1,6 +1,7 @@
 <?php
+namespace panix\mod\banner\widgets\slider;
 
-class SliderWidget extends CWidget {
+class SliderWidget extends Widget {
 
     protected $assetsPath;
     protected $assetsUrl;
