@@ -1,6 +1,8 @@
 <?php
 namespace panix\mod\banner\widgets\slider;
 
+use yii\base\Widget;
+
 class SliderWidget extends Widget {
 
     protected $assetsPath;
