@@ -38,7 +38,7 @@ class DefaultController extends AdminController
     public function actionIndex()
     {
         $this->pageName = Yii::t('banner/default', 'MODULE_NAME');
-        $this->breadcrumbs = [$this->pageName];
+        $this->view->params['breadcrumbs'] = [$this->pageName];
 
         $searchModel = new BannerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
@@ -65,7 +65,7 @@ class DefaultController extends AdminController
         $isNew = $model->isNewRecord;
         $this->pageName = ($isNew) ? $model::t('CREATE_BANNER') : $model::t('UPDATE_BANNER');
 
-        $this->breadcrumbs = [
+        $this->view->params['breadcrumbs'] = [
             [
                 'label' => Yii::t('banner/default', 'MODULE_NAME'),
                 'url' => ['index']
