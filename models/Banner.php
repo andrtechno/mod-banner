@@ -53,10 +53,7 @@ class Banner extends ActiveRecord
                 'class' => 'panix\engine\grid\columns\ActionColumn',
             ],
             'DEFAULT_COLUMNS' => [
-                [
-                    'class' => \panix\engine\grid\sortable\Column::class,
-                    'url' => ['/admin/banner/default/sortable']
-                ],
+                ['class' => 'panix\engine\grid\sortable\Column'],
                 ['class' => 'panix\engine\grid\columns\CheckboxColumn'],
             ],
         ];
@@ -65,11 +62,10 @@ class Banner extends ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'required'],
             [['content', 'url', 'url_name'], 'string'],
             [['image', 'url', 'url_name'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'safe'],
-            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
+            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
         ];
     }
 

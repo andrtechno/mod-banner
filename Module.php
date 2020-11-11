@@ -11,24 +11,6 @@ class Module extends WebModule
 
     public $icon = 'images';
 
-    public function afterInstall()
-    {
-        // if (!file_exists(Yii::getPathOfAlias('webroot.uploads.banner'))) {
-        //     CFileHelper::createDirectory(Yii::getPathOfAlias('webroot.uploads.banner'), 0777);
-        // }
-        return parent::afterInstall();
-    }
-
-    public function afterUninstall()
-    {
-        //Удаляем таблицу модуля
-        // Yii::app()->db->createCommand()->dropTable(Banner::model()->tableName());
-        // Yii::app()->db->createCommand()->dropTable(BannerTranslate::model()->tableName());
-        // if (file_exists(Yii::getPathOfAlias('webroot.uploads.banner'))) {
-        //      CFileHelper::removeDirectory(Yii::getPathOfAlias('webroot.uploads.banner'), array('traverseSymlinks' => true));
-        //  }
-        return parent::afterUninstall();
-    }
 
     public function getAdminMenu()
     {

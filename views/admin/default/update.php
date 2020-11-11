@@ -24,7 +24,7 @@ $form = ActiveForm::begin();
                 '{buttons}' => $model->getFileHtmlButton('image')
             ],
             'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
-        ])->hint($model::t('IMAGE_HINT'))->fileInput() ?>
+        ])->fileInput() ?>
         <?= $form->field($model, 'url_name'); ?>
         <?= $form->field($model, 'url'); ?>
     </div>

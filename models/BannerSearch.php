@@ -41,8 +41,7 @@ class BannerSearch extends Banner
      */
     public function search($params)
     {
-        $query = Banner::find()->translate();
-		$query->sort();
+        $query = Banner::find()->sort();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => self::getSort(),
