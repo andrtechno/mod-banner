@@ -18,7 +18,7 @@ $form = ActiveForm::begin();
     </div>
     <div class="card-body">
 
-        <?= $form->field($model, 'content')->textarea(); ?>
+
         <?= $form->field($model, 'image', [
             'parts' => [
                 '{buttons}' => $model->getFileHtmlButton('image')
@@ -27,6 +27,7 @@ $form = ActiveForm::begin();
         ])->fileInput() ?>
         <?= $form->field($model, 'url_name'); ?>
         <?= $form->field($model, 'url'); ?>
+        <?= $form->field($model, 'content')->textarea(); ?>
     </div>
     <div class="card-footer text-center">
         <?= $model->submitButton(); ?>
