@@ -2,6 +2,7 @@
 
 return [
     'IMAGE' => 'Image',
+    'IMAGE_MOB' => 'Image for smartphone',
     'CONTENT' => 'Content',
     'CREATE_BANNER' => 'Creating a banner',
     'UPDATE_BANNER' => 'Editing a banner',

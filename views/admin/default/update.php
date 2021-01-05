@@ -25,6 +25,12 @@ $form = ActiveForm::begin();
             ],
             'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
         ])->fileInput() ?>
+        <?= $form->field($model, 'image_mob', [
+            'parts' => [
+                '{buttons}' => $model->getFileHtmlButton('image_mob')
+            ],
+            'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
+        ])->fileInput() ?>
         <?= $form->field($model, 'url_name'); ?>
         <?= $form->field($model, 'url'); ?>
         <?= $form->field($model, 'content')->textarea(); ?>

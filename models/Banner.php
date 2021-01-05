@@ -63,9 +63,9 @@ class Banner extends ActiveRecord
     {
         return [
             [['content', 'url', 'url_name'], 'string'],
-            [['image', 'url', 'url_name'], 'string', 'max' => 255],
+            [['image', 'image_mob', 'url', 'url_name'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'safe'],
-            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
+            [['image','image_mob'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
         ];
     }
 
@@ -79,6 +79,7 @@ class Banner extends ActiveRecord
                 'class' => 'panix\engine\behaviors\UploadFileBehavior',
                 'files' => [
                     'image' => '@uploads/banner',
+                    'image_mob' => '@uploads/banner_mob',
                 ],
                 'options' => [
                     'watermark' => false

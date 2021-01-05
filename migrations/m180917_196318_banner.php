@@ -22,7 +22,8 @@ class m180917_196318_banner extends Migration
     {
         $this->createTable(Banner::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
-            'image' => $this->string(255),
+            'image' => $this->string(50),
+            'image_mob' => $this->string(50),
             'url_name' => $this->string(255),
             'url' => $this->string(255),
             'created_at' => $this->integer(11)->null(),
