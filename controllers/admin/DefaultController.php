@@ -25,7 +25,7 @@ class DefaultController extends AdminController
                 'class' => \panix\engine\actions\DeleteAction::class,
                 'modelClass' => Banner::class,
             ],
-            'deleteFile' => [
+            'delete-file' => [
                 'class' => \panix\engine\actions\DeleteFileAction::class,
                 'modelClass' => Banner::class,
             ],
