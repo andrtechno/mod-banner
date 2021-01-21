@@ -75,7 +75,7 @@ class Banner extends ActiveRecord
     public function behaviors()
     {
         return \yii\helpers\ArrayHelper::merge([
-            'upload' => [
+            'uploadFile' => [
                 'class' => 'panix\engine\behaviors\UploadFileBehavior',
                 'files' => [
                     'image' => '@uploads/banner',
