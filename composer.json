@@ -2,7 +2,7 @@
     "name": "panix/mod-banner",
     "description": "Banner",
     "homepage": "https://github.com/andrtechno/mod-banner",
-    "type": "yii2-extension",
+    "type": "pixelion-module",
     "license": "MIT",
     "authors": [
         {
