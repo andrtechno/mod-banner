@@ -27,7 +27,7 @@ class m180917_196318_banner extends Migration
             'created_at' => $this->integer(11)->null(),
             'updated_at' => $this->integer(11)->null(),
             'ordern' => $this->integer()->unsigned(),
-            'switch' => $this->boolean()->defaultValue(1),
+            'switch' => $this->boolean()->defaultValue(true),
         ]);
 
         $this->createTable(BannerTranslate::tableName(), [
