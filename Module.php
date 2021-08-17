@@ -10,7 +10,11 @@ class Module extends WebModule
 {
 
     public $icon = 'images';
+    public $pcMaxSize = '1920x860';
+    public $mobileMaxSize = '500x300';
 
+    public $pcMinSize = '1920x860';
+    public $mobileMinSize = '500x300';
 
     public function getAdminMenu()
     {

@@ -1,4 +1,3 @@
-
 <?php
 
 use panix\engine\Html;
@@ -24,13 +23,17 @@ $form = ActiveForm::begin();
                 '{buttons}' => $model->getFileHtmlButton('image')
             ],
             'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
-        ])->fileInput() ?>
+        ])
+            ->fileInput()
+            ->hint($model::t('SIZE_MIN', Yii::$app->getModule('banner')->pcMinSize).'<br/>'.$model::t('SIZE_MAX', Yii::$app->getModule('banner')->pcMaxSize)) ?>
         <?= $form->field($model, 'image_mob', [
             'parts' => [
                 '{buttons}' => $model->getFileHtmlButton('image_mob')
             ],
             'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
-        ])->fileInput() ?>
+        ])
+            ->fileInput()
+            ->hint($model::t('SIZE_MIN', Yii::$app->getModule('banner')->mobileMinSize).'<br/>'.$model::t('SIZE_MAX', Yii::$app->getModule('banner')->mobileMaxSize)) ?>
         <?= $form->field($model, 'url_name'); ?>
         <?= $form->field($model, 'url'); ?>
         <?= $form->field($model, 'content')->textarea(); ?>

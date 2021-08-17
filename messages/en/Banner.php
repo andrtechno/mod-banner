@@ -9,6 +9,8 @@ return [
     'CREATED_AT' => 'Creation date',
     'UPDATED_AT' => 'Date edited',
     'ULR' => 'URL Link',
-    'URL_NAME' => 'Link name'
+    'URL_NAME' => 'Link name',
+    'SIZE_MAX' => 'Maximum available image size "{0}"',
+    'SIZE_MIN' => 'Minimum image size "{0}"'
 ];
 

@@ -33,9 +33,19 @@ to the require section of your `composer.json` file.
 Add to web config.
 ```
 'modules' => [
-    'banner' => ['class' => 'panix\mod\banner\Module'],
+    'banner' => [
+        'class' => 'panix\mod\banner\Module'
+    ],
 ]
 ```
+#### Module props
+|      Props     |    Default    |
+|----------------|:-------------:|
+|   $pcMaxSize   |   1920x860    |
+| $mobileMaxSize |    500x300    |
+|   $pcMinSize   |   1920x860    |
+| $mobileMinSize |    500x300    |
+
 
 #### Migrate
 ```
