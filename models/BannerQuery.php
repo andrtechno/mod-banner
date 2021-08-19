@@ -10,17 +10,6 @@ class BannerQuery extends ActiveQuery
 {
 
     use DefaultQueryTrait, TranslateQueryTrait;
-    
-    public function init()
-    {
-        /** @var \yii\db\ActiveRecord $modelClass */
-        $modelClass = $this->modelClass;
-        $tableName = $modelClass::tableName();
-        if (isset($modelClass::getTableSchema()->columns['ordern'])) {
-            $this->addOrderBy(["{$tableName}.ordern" => SORT_DESC]);
-        }
-        parent::init();
-    }
 
     public function init()
     {
@@ -32,4 +21,5 @@ class BannerQuery extends ActiveQuery
         }
         parent::init();
     }
+
 }
