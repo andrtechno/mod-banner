@@ -63,11 +63,10 @@ class Banner extends ActiveRecord
     public function rules()
     {
         list($pcSizeMaxWidth, $pcSizeMaxHeight) = explode('x', Yii::$app->getModule(self::MODULE_ID)->pcMaxSize);
-        list($mobileSizeMaxWidth, $mobileSizeMaxHeight) = explode('x', Yii::$app->getModule(self::MODULE_ID)->pcMaxSize);
-
+        list($mobileSizeMaxWidth, $mobileSizeMaxHeight) = explode('x', Yii::$app->getModule(self::MODULE_ID)->mobileMaxSize);
 
         list($pcSizeMinWidth, $pcSizeMinHeight) = explode('x', Yii::$app->getModule(self::MODULE_ID)->pcMinSize);
-        list($mobileSizeMinWidth, $mobileSizeMinHeight) = explode('x', Yii::$app->getModule(self::MODULE_ID)->pcMinSize);
+        list($mobileSizeMinWidth, $mobileSizeMinHeight) = explode('x', Yii::$app->getModule(self::MODULE_ID)->mobileMinSize);
 
 
         return [
@@ -75,8 +74,18 @@ class Banner extends ActiveRecord
             [['image', 'image_mob', 'url', 'url_name'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'safe'],
             [['image', 'image_mob'], 'default'],
-            [['image'], 'image', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg', 'webp'], 'maxWidth' => $pcSizeMaxWidth, 'maxHeight' => $pcSizeMaxHeight, 'minWidth' => $pcSizeMinWidth, 'minHeight' => $pcSizeMinHeight],
-            [['image_mob'], 'image', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg', 'webp'], 'maxWidth' => $mobileSizeMaxWidth, 'maxHeight' => $mobileSizeMaxHeight, 'minWidth' => $mobileSizeMinWidth, 'minHeight' => $mobileSizeMinHeight],
+            [['image'], 'image', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg', 'webp'],
+                //'maxWidth' => $pcSizeMaxWidth,
+                //'maxHeight' => $pcSizeMaxHeight,
+                'minWidth' => $pcSizeMinWidth,
+                'minHeight' => $pcSizeMinHeight
+            ],
+            [['image_mob'], 'image', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg', 'webp'],
+                'maxWidth' => $mobileSizeMaxWidth,
+                'maxHeight' => $mobileSizeMaxHeight,
+                'minWidth' => $mobileSizeMinWidth,
+                'minHeight' => $mobileSizeMinHeight
+            ],
         ];
     }
 
