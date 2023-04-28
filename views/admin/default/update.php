@@ -22,7 +22,7 @@ $form = ActiveForm::begin();
             'parts' => [
                 '{buttons}' => $model->getFileHtmlButton('image')
             ],
-            'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
+            'template' => '{label}{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
         ])
             ->fileInput()
             ->hint($model::t('SIZE_MIN', Yii::$app->getModule('banner')->pcMinSize).'<br/>'.$model::t('SIZE_MAX', Yii::$app->getModule('banner')->pcMaxSize)) ?>
@@ -30,7 +30,7 @@ $form = ActiveForm::begin();
             'parts' => [
                 '{buttons}' => $model->getFileHtmlButton('image_mob')
             ],
-            'template' => '<div class="col-sm-4 col-lg-2">{label}</div>{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
+            'template' => '{label}{beginWrapper}{input}{buttons}{hint}{error}{endWrapper}'
         ])
             ->fileInput()
             ->hint($model::t('SIZE_MIN', Yii::$app->getModule('banner')->mobileMinSize).'<br/>'.$model::t('SIZE_MAX', Yii::$app->getModule('banner')->mobileMaxSize)) ?>
